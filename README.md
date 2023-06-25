@@ -1,4 +1,3 @@
-TO-DO:
-- Understand how to read the game's Mint and Assembly functions
-- Rewrite a majority of it in C++
-- Recompile to a .DOL
+**The Goal:**
+
+My mission is to provide an easy-to-read version of Kirby's Return to Dreamland's ASM code in the much more understandable C++.
