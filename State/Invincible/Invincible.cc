@@ -26,18 +26,6 @@ namespace State
             m_invincFrames -= 1;
             return;
         }
-        
-        void InvincData::mightyEffect(void)
-        {
-            if (isInvinc() == 0)
-            {
-                m_mightyEffect = 0;
-                return;
-            }
-
-            m_mightyEffect = 1;
-            return;
-        }
     }
 }
 

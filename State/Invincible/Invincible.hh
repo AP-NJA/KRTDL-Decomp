@@ -19,6 +19,7 @@ namespace State
             u8 isInvinc(void);
             void decrementFrames(void);
             void mightyEffect(void);
+            void manageFlashCycles(void);
         };
     }
 }
