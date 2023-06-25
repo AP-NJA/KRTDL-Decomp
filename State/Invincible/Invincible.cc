@@ -1,5 +1,4 @@
 #include "Invincible.hh"
-#include <cstdio>
 
 namespace State
 {
@@ -26,27 +25,17 @@ namespace State
             m_invincFrames -= 1;
             return;
         }
+
+        void InvincData::manageFlashCycles(void)
+        {
+            if (m_flashCycles > 19)
+            {
+                m_flashCycles = 16;
+                return;
+            }
+
+            m_flashCycles += 1;
+            return;
+        }
     }
-}
-
-int main(void)
-{
-    State::Invincible::InvincData *player;
-
-    player->m_invincFrames = 10;
-    player->m_wasHurt = 0;
-    player->m_vulnerable = 0;
-
-    for (u32 i = 0; i < 20; i++)
-    {
-        player->decrementFrames();
-        player->mightyEffect();
-        
-        printf("====================\n");
-        printf("Invinc Frames: %lu\n", player->m_invincFrames);
-        printf("Is Invinc: %hhu\n", player->isInvinc());
-        printf("Mighty Effect: %hhu\n", player->m_mightyEffect);
-    }
-
-    return 0;
 }
