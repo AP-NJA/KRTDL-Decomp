@@ -36,7 +36,6 @@ namespace State
             if (m_flashCycles > 19)
             {
                 m_flashCycles = 16;
-                return;
             }
 
             m_flashCycles += 1;
