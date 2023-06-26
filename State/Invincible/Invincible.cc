@@ -23,7 +23,6 @@ namespace State
             }
 
             m_invincFrames -= 1;
-            return;
         }
 
         void InvincData::manageFlashCycles(void)
@@ -41,7 +40,6 @@ namespace State
             }
 
             m_flashCycles += 1;
-            return;
         }
     }
 }
