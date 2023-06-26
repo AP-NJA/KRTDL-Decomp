@@ -13,7 +13,6 @@ namespace State
             }
 
             m_mightyEffect = 1;
-            return;
         }
     }
 }
