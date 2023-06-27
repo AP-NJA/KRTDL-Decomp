@@ -14,5 +14,16 @@ namespace State
 
             m_mightyEffect = 1;
         }
+
+        void InvincData::manageSparkleEffect(void)
+        {
+            if (m_mightyEffect == 0)
+            {
+                m_sparkleEffect = 0;
+                return;
+            }
+
+            m_sparkleEffect = 1;
+        }
     }
 }

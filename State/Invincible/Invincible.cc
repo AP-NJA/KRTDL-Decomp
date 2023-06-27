@@ -29,16 +29,16 @@ namespace State
         {            
             if (isInvinc() == 0)
             {
-                m_flashCycles = 0;
+                m_flashCycle = 0;
                 return;
             }
             
-            if (m_flashCycles > 19)
+            if (m_flashCycle > 19)
             {
-                m_flashCycles = 16;
+                m_flashCycle = 16;
             }
 
-            m_flashCycles += 1;
+            m_flashCycle += 1;
         }
     }
 }
