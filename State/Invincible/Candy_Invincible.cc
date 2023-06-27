@@ -17,12 +17,14 @@ namespace State
 
         void InvincData::manageSparkleEffect(void)
         {
-            if (m_mightyEffect == 0)
+            CharModel::Model model;
+            
+            if ((m_mightyEffect == 0) || (model.isVisible() == 0))
             {
                 m_sparkleEffect = 0;
                 return;
             }
-
+            
             m_sparkleEffect = 1;
         }
     }

@@ -2,8 +2,10 @@
 
 namespace CharModel
 {
-    u8 Model::isVisible(u8 m_isVisible)
+    u8 Model::m_isVisible;
+
+    u8 Model::isVisible(void)
     {
-        this->m_isVisible = m_isVisible;
+        return m_isVisible;
     }
 }

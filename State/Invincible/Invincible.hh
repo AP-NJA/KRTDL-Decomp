@@ -17,11 +17,11 @@ namespace State
                 u8 m_mightyEffect;
                 u8 m_sparkleEffect;
             
-            u8 isInvinc(void);
-            void decrementFrames(void);
-            void mightyEffect(void);
-            void manageFlashCycles(void);
-            void manageSparkleEffect(void);
+                u8 isInvinc(void);
+                void decrementFrames(void);
+                void mightyEffect(void);
+                void manageFlashCycles(void);
+                void manageSparkleEffect(void);
         };
     }
 }
