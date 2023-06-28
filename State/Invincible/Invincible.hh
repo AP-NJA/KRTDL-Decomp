@@ -21,6 +21,8 @@ namespace State
                 void decrementFrames(void);
                 void mightyEffect(void);
                 void manageFlashCycles(void);
+                void enableSparkle(void);
+                void disableSparkle(void);
                 void manageSparkleEffect(void);
         };
     }

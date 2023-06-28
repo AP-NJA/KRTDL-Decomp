@@ -15,17 +15,38 @@ namespace State
             m_mightyEffect = 1;
         }
 
-        void InvincData::manageSparkleEffect(void)
+        void InvincData::enableSparkle(void)
         {
-            CharModel::Model model;
-            
-            if ((m_mightyEffect == 0) || (model.isVisible() == 0))
+            if (m_sparkleEffect == 0)
+            {
+                m_sparkleEffect = 1;
+                return;
+            }
+        }
+        
+        void InvincData::disableSparkle(void)
+        {
+            if (m_sparkleEffect != 0)
             {
                 m_sparkleEffect = 0;
                 return;
             }
-            
-            m_sparkleEffect = 1;
+        }
+
+        void InvincData::manageSparkleEffect(void)
+        {
+            CharModel::Model model;
+
+            if (m_mightyEffect != 0)
+            {
+                if (model.isVisible() == 0)
+                {
+                    disableSparkle();
+                    return;
+                }
+
+                enableSparkle();
+            }  
         }
     }
 }
