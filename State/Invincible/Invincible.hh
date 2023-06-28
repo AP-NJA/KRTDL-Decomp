@@ -12,6 +12,7 @@ namespace State
             public:
                 u32 m_invincFrames;
                 u32 m_flashCycle;
+                u32 m_candyTimer;
                 u8 m_wasHurt;
                 u8 m_vulnerable;
                 u8 m_mightyEffect;
@@ -24,6 +25,7 @@ namespace State
                 void enableSparkle(void);
                 void disableSparkle(void);
                 void manageSparkleEffect(void);
+                void candyTimer(void);
         };
     }
 }

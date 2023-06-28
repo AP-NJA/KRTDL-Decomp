@@ -48,5 +48,16 @@ namespace State
                 enableSparkle();
             }  
         }
+
+        void InvincData::candyTimer(void)
+        {
+            if (m_mightyEffect == 0)
+            {
+                m_candyTimer = 0;
+                return;
+            }
+
+            m_candyTimer -= 1;
+        }
     }
 }
