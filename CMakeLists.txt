@@ -4,6 +4,7 @@ project(KRTDL-DECOMP)
 set (Executable
     State/Invincible/Invincible.cc
     State/Invincible/Candy_Invincible.cc
+    CharModel/Model.cc
 )
 
 add_executable(KRTDL-DECOMP
