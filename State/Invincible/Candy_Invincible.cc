@@ -4,9 +4,15 @@ namespace State
 {
     namespace Invincible
     {
-        void InvincData::mightyEffect(void)
+        u32 CandyData::m_candyTimer;
+        u8 CandyData::m_mightyEffect;
+        u8 CandyData::m_sparkleEffect;
+        
+        void CandyData::mightyEffect(void)
         {
-            if (isInvinc() == 0)
+            InvincData invinc;
+            
+            if (invinc.isInvinc() == 0)
             {
                 m_mightyEffect = 0;
                 return;
@@ -15,7 +21,7 @@ namespace State
             m_mightyEffect = 1;
         }
 
-        void InvincData::enableSparkle(void)
+        void CandyData::enableSparkle(void)
         {
             if (m_sparkleEffect == 0)
             {
@@ -24,7 +30,7 @@ namespace State
             }
         }
         
-        void InvincData::disableSparkle(void)
+        void CandyData::disableSparkle(void)
         {
             if (m_sparkleEffect != 0)
             {
@@ -33,23 +39,21 @@ namespace State
             }
         }
 
-        void InvincData::manageSparkleEffect(void)
+        void CandyData::manageSparkleEffect(void)
         {
             CharModel::Model model;
 
-            if (m_mightyEffect != 0)
+            if ((m_mightyEffect == 0) || (model.isVisible() == 0))
             {
-                if (model.isVisible() == 0)
-                {
-                    disableSparkle();
-                    return;
-                }
+                disableSparkle();
+                return;
+            }
 
-                enableSparkle();
-            }  
+            enableSparkle();
+            return;
         }
 
-        void InvincData::candyTimer(void)
+        void CandyData::candyTimer(void)
         {
             if (m_mightyEffect == 0)
             {

@@ -4,6 +4,11 @@ namespace State
 {
     namespace Invincible
     {
+        u32 InvincData::m_invincFrames;
+        u32 InvincData::m_flashCycle;
+        u8 InvincData::m_wasHurt;
+        u8 InvincData::m_vulnerable;
+        
         u8 InvincData::isInvinc(void)
         {
             if ((m_invincFrames != 0) || (m_wasHurt != 0) || (m_vulnerable != 0))
