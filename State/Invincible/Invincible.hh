@@ -32,6 +32,7 @@ namespace State
                 static void disableSparkle(void);
                 static void manageSparkleEffect(void);
                 static void candyTimer(void);
+                static void rainbowCycle(void); //TO-DO: Remind myself how the hell this works
         };
     }
 }
