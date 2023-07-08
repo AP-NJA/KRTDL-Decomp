@@ -24,8 +24,10 @@ namespace State
         {   
             public:
                 static u32 m_candyTimer;
+                static u32 m_rainbowCycle;
                 static u8 m_mightyEffect;
                 static u8 m_sparkleEffect;
+                static u8 m_x18;
 
                 static void mightyEffect(void);
                 static void enableSparkle(void);

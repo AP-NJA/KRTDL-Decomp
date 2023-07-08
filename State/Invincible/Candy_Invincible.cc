@@ -5,6 +5,7 @@ namespace State
     namespace Invincible
     {
         u32 CandyData::m_candyTimer;
+        u32 CandyData::m_rainbowCycle;
         u8 CandyData::m_mightyEffect;
         u8 CandyData::m_sparkleEffect;
         
@@ -62,6 +63,27 @@ namespace State
             }
 
             m_candyTimer -= 1;
+        }
+
+        void CandyData::rainbowCycle(void)
+        {
+            if (m_mightyEffect == 0)
+            {
+                return;
+            }
+
+            if (m_x18 & 1 != 0)
+            {
+                m_rainbowCycle = 0;
+                return;
+            }
+
+            if (m_rainbowCycle > 47)
+            {
+                m_rainbowCycle = 0;
+            }
+
+            m_rainbowCycle += 1;
         }
     }
 }
