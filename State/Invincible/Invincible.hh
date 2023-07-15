@@ -10,31 +10,31 @@ namespace State
         class InvincData
         {
             public:            
-                static u32 m_invincFrames;
-                static u32 m_flashCycle;
-                static u8 m_wasHurt;
-                static u8 m_vulnerable;
+                u32 m_invincFrames;
+                u32 m_flashCycle;
+                u8 m_wasHurt;
+                u8 m_vulnerable;
                 
-                static u8 isInvinc(void);
-                static void decrementFrames(void);
-                static void manageFlashCycles(void);
+                u8 isInvinc(void);
+                void decrementFrames(void);
+                void manageFlashCycles(void);
         };
 
-        class CandyData
+        class CandyData : public InvincData, public CharModel::Model
         {   
             public:
-                static u32 m_candyTimer;
-                static u32 m_rainbowCycle;
-                static u8 m_mightyEffect;
-                static u8 m_sparkleEffect;
-                static u8 m_x18;
-
-                static void mightyEffect(void);
-                static void enableSparkle(void);
-                static void disableSparkle(void);
-                static void manageSparkleEffect(void);
-                static void candyTimer(void);
-                static void rainbowCycle(void);
+                u32 m_candyTimer;
+                u32 m_rainbowCycle;
+                u8 m_mightyEffect;
+                u8 m_sparkleEffect;
+                u8 m_x18;
+                
+                void mightyEffect(void);
+                void enableSparkle(void);
+                void disableSparkle(void);
+                void manageSparkleEffect(void);
+                void candyTimer(void);
+                void rainbowCycle(void);
         };
     }
 }

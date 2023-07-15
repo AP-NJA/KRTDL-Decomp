@@ -1,28 +1,22 @@
 #include "Invincible.hh"
+#include <cstdio>
 
 namespace State
 {
     namespace Invincible
-    {   
-        u32 CandyData::m_candyTimer;
-        u32 CandyData::m_rainbowCycle;
-        u8 CandyData::m_mightyEffect;
-        u8 CandyData::m_sparkleEffect;
-        u8 CandyData::m_x18;
-        
+    {          
         void CandyData::mightyEffect(void)
-        {               
-            InvincData invinc;
-            
-            if (invinc.isInvinc() == 0)
+        {
+            if (isInvinc() == 0)
             {
                 m_mightyEffect = 0;
                 return;
             }
 
             m_mightyEffect = 1;
+            return;
         }
-
+        
         void CandyData::enableSparkle(void)
         {
             if (m_sparkleEffect == 0)
@@ -42,10 +36,8 @@ namespace State
         }
 
         void CandyData::manageSparkleEffect(void)
-        {            
-            CharModel::Model model;
-            
-            if ((m_mightyEffect == 0) || (model.isVisible() == 0))
+        {                                                                                                
+            if ((m_mightyEffect == 0) || (isVisible() == 0))
             {
                 disableSparkle();
                 return;
@@ -57,9 +49,9 @@ namespace State
 
         void CandyData::candyTimer(void)
         {
-            if (m_mightyEffect == 0)
+            if (m_candyTimer < 1)
             {
-                m_candyTimer = 0;
+                m_mightyEffect = 0;
                 return;
             }
 
@@ -67,7 +59,7 @@ namespace State
         }
 
         void CandyData::rainbowCycle(void)
-        {
+        {                        
             if ((m_mightyEffect == 0) || ((m_x18 & 1) != 0)) 
             {
                 m_rainbowCycle = 0;
