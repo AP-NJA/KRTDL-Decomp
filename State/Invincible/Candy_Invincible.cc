@@ -7,7 +7,7 @@ namespace State
     {          
         void CandyData::mightyEffect(void)
         {
-            if (isInvinc() == 0)
+            if ((isInvinc() == 0) || (m_candyTimer == 0))
             {
                 m_mightyEffect = 0;
                 return;
@@ -23,7 +23,7 @@ namespace State
             {
                 m_sparkleEffect = 1;
                 return;
-            }
+            }            
         }
         
         void CandyData::disableSparkle(void)
@@ -36,22 +36,29 @@ namespace State
         }
 
         void CandyData::manageSparkleEffect(void)
-        {                                                                                                
+        {                                                                                                            
+            m_sparkleEffect = 0;
+
             if ((m_mightyEffect == 0) || (isVisible() == 0))
             {
                 disableSparkle();
                 return;
             }
-
+            
             enableSparkle();
-            return;
         }
 
         void CandyData::candyTimer(void)
         {
+            if (m_mightyEffect == 0)
+            {
+                m_candyTimer = 0;
+                return;
+            }
+            
             if (m_candyTimer < 1)
             {
-                m_mightyEffect = 0;
+                m_candyTimer = 0;
                 return;
             }
 
@@ -60,18 +67,22 @@ namespace State
 
         void CandyData::rainbowCycle(void)
         {                        
-            if ((m_mightyEffect == 0) || ((m_x18 & 1) != 0)) 
+            if ((m_mightyEffect == 0) || (m_rainbowTimer == 0)) 
             {
                 m_rainbowCycle = 0;
                 return;
             }
+            
+            if (m_rainbowTimer & 1 == 0)
+            {
+                m_rainbowCycle += 1;
+            }
 
-            if (m_rainbowCycle > 47)
+            if (m_rainbowCycle == 48)
             {
                 m_rainbowCycle = 0;
             }
-
-            m_rainbowCycle += 1;
         }
+    
     }
 }
