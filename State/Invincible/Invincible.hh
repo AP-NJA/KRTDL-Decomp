@@ -27,7 +27,7 @@ namespace State
                 u32 m_rainbowCycle;
                 u8 m_mightyEffect;
                 u8 m_sparkleEffect;
-                u8 m_x18;
+                u8 m_rainbowTimer;
                 
                 void mightyEffect(void);
                 void enableSparkle(void);
