@@ -33,12 +33,12 @@ namespace State
                 return;
             }
             
-            if (m_flashCycle > 19)
+            m_flashCycle += 1;
+
+            if (m_flashCycle == 20)
             {
                 m_flashCycle = 16;
             }
-
-            m_flashCycle += 1;
         }
     }
 }
