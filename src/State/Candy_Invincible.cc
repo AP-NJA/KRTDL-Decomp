@@ -49,7 +49,7 @@ namespace State
         }
 
         void Candy::rainbowCycle(void)
-        {                        
+        {                                    
             if ((m_mightyEffect == 0) && (m_rainbowTimer == 0))
             {
                 m_rainbowCycle = 0;
