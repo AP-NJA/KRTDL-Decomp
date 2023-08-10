@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../../Common/Types.hh"
-#include "../../Model/Model.hh"
+#include "../Common/Types.hh"
+#include "../Model/Model.hh"
 
 namespace State
 {    
