@@ -38,7 +38,7 @@ void manageSparkleEffect(CandyInvinc * param_1)
 
     param_1->sparkleEffect = 0;
 
-    if (param_1->mightyEffect == 0)
+    if (param_1->candyTimer == 0)
     {
         return;
     }
@@ -54,11 +54,6 @@ void manageSparkleEffect(CandyInvinc * param_1)
 
 void rainbowTimer(CandyInvinc * param_1)
 {
-    if (param_1->mightyEffect == 0)
-    {
-        return;
-    }
-
     if (param_1->candyTimer != 0)
     {
         return;
