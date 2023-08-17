@@ -5,7 +5,6 @@ void candyTimer(CandyInvinc * param_1)
 {
     if (param_1->candyTimer == 0)
     {
-        param_1->mightyEffect = 0;
         return;
     }
 
@@ -51,4 +50,46 @@ void manageSparkleEffect(CandyInvinc * param_1)
     }
 
     enableSparkle(param_1);
+}
+
+void rainbowTimer(CandyInvinc * param_1)
+{
+    if (param_1->mightyEffect == 0)
+    {
+        return;
+    }
+
+    if (param_1->candyTimer != 0)
+    {
+        return;
+    }
+
+    if (param_1->rainbowTimer == 0)
+    {
+        param_1->mightyEffect = 0;
+        return;
+    }
+
+    param_1->rainbowTimer -= 1;
+}
+
+void rainbowCycle(CandyInvinc * param_1)
+{
+    if (param_1->rainbowTimer == 0)
+    {
+        param_1->rainbowCycle = 0;
+        return;
+    }
+
+    if (param_1->rainbowTimer & 1 != 0)
+    {
+        return;
+    }
+
+    if (param_1->rainbowCycle == 48)
+    {
+        param_1->rainbowCycle = 0;
+    }
+
+    param_1->rainbowCycle += 1;
 }
