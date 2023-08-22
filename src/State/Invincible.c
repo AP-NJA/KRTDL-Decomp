@@ -25,7 +25,7 @@ void manageFlashCycle(PlayerInvinc * param_1)
 {
     if (canSetInvinc(param_1) == 0)
     {
-        param_1-> flashCycle = 0;
+        param_1->flashCycle = 0;
         return;
     }
 
