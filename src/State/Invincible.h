@@ -24,13 +24,14 @@ typedef struct CandyInvinc
     u32 candyTimer;
     u32 rainbowTimer;
     u32 rainbowCycle;
+    PlayerInvinc player;
 } CandyInvinc;
 
 void candyTimer(CandyInvinc * param_1);
 void enableSparkle(CandyInvinc * param_1);
 void disableSparkle(CandyInvinc * param_1);
 void manageSparkleEffect(CandyInvinc * param_1);
-void rainbowCycle(CandyInvinc * param_1);
 void rainbowTimer(CandyInvinc * param_1);
+void rainbowCycle(CandyInvinc * param_1);
 
 #endif

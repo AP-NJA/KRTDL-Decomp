@@ -3,6 +3,8 @@
 
 void candyTimer(CandyInvinc * param_1)
 {
+    PlayerInvinc * player = &param_1->player;
+
     if (param_1->candyTimer == 0)
     {
         return;
@@ -10,6 +12,9 @@ void candyTimer(CandyInvinc * param_1)
 
     param_1->candyTimer -= 1;
     param_1->mightyEffect = 1;
+    player->disablePity = 1;
+
+    return;
 }
 
 void enableSparkle(CandyInvinc * param_1)
@@ -54,6 +59,8 @@ void manageSparkleEffect(CandyInvinc * param_1)
 
 void rainbowTimer(CandyInvinc * param_1)
 {
+    PlayerInvinc * player = &param_1->player;
+
     if (param_1->candyTimer != 0)
     {
         return;
@@ -62,6 +69,7 @@ void rainbowTimer(CandyInvinc * param_1)
     if (param_1->rainbowTimer == 0)
     {
         param_1->mightyEffect = 0;
+        player->disablePity = 0;
         return;
     }
 
