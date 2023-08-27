@@ -1,6 +1,8 @@
 #ifndef TYPES_H_
 #define TYPES_H_
 
+#include <stdbool.h>
+
 typedef signed char         s8;
 typedef signed short        s16;
 typedef signed long         s32;
