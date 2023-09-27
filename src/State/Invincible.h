@@ -2,36 +2,40 @@
 #define INVINCIBLE_H_
 
 #include "../../include/Types.h"
+#include "../Model/Model.h"
 
 typedef struct PlayerInvinc 
 {
     u32 invincFrames;
     u32 flashCycle;
-    u8 wasHurt;
-    u8 disablePity;
-    u8 enableInvincFlash;
+    bool wasHurt;
+    bool disablePity;
 } PlayerInvinc;
 
-u8 canSetInvinc(PlayerInvinc * param_1);
-void decrementFrames(PlayerInvinc * param_1);
-void manageFlashCycle(PlayerInvinc * param_1);
+bool canSetInvinc(PlayerInvinc * param_1); 
+u32 decrementInvincFrames(PlayerInvinc * param_1);
+u32 manageFlashCycle(PlayerInvinc * param_1);
 
 typedef struct CandyInvinc
 {
-    u32 refAddr;
-    u8 mightyEffect;
-    u8 sparkleEffect;
+    Model modelData;
+    PlayerInvinc playerInvincData;
+    bool enableInvincFlash;
+    bool mightyEffect;
+    bool sparkleEffect;
     u32 candyTimer;
     u32 rainbowTimer;
     u32 rainbowCycle;
-    PlayerInvinc player;
+    u8 rgbRedValue;
+    u8 rgbGreenValue;
+    u8 rgbBlueValue;
 } CandyInvinc;
 
-void candyTimer(CandyInvinc * param_1);
-void enableSparkle(CandyInvinc * param_1);
-void disableSparkle(CandyInvinc * param_1);
+u32 decrementCandyTimer(CandyInvinc * param_1);
+bool enableSparkle(CandyInvinc * param_1);
+bool disableSparkle(CandyInvinc * param_1);
 void manageSparkleEffect(CandyInvinc * param_1);
-void rainbowTimer(CandyInvinc * param_1);
-void rainbowCycle(CandyInvinc * param_1);
-
+u32 decrementRainbowTimer(CandyInvinc * param_1);
+u32 manageRainbowCycle(CandyInvinc * param_1);
+u8 rgbCurrentColor(CandyInvinc * param_1);
 #endif
