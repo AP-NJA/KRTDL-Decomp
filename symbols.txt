@@ -1,0 +1,7 @@
+ManageFlashCycle 0x8034f8f0 f
+SetInvincState 0x8034f948 f
+DecrementInvincFrames 0x8034fa20 f
+IsVisible 0x804eb448 f
+EnableSparkle 0x804f0cb0 f
+DisableSparkle 0x804f0cf8 f
+InvincMain 0x804f0534 f
