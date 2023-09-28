@@ -1,7 +1,7 @@
 #include "Model.h"
 
-u8 isVisible(Model * param_1)
+bool isVisible(Model * param_1)
 {
-    return param_1->isVisible;
+    return param_1->displayModel;
 }
 

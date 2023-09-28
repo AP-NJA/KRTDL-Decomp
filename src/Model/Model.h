@@ -5,10 +5,10 @@
 
 typedef struct Model
 {
-    u8 isVisible;
+    bool displayModel;
     u8 disableHitbox;
 } Model;
 
-u8 isVisible(Model * param_1);
+bool isVisible(Model * param_1);
 
 #endif
