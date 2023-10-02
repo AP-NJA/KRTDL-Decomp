@@ -18,7 +18,7 @@ u32 manageFlashCycle(PlayerInvinc * param_1);
 
 typedef struct CandyInvinc
 {
-    Model modelData;
+    Model * modelData;
     PlayerInvinc playerInvincData;
     bool enableInvincFlash;
     bool mightyEffect;
@@ -37,5 +37,5 @@ bool disableSparkle(CandyInvinc * param_1);
 void manageSparkleEffect(CandyInvinc * param_1);
 u32 decrementRainbowTimer(CandyInvinc * param_1);
 u32 manageRainbowCycle(CandyInvinc * param_1);
-u8 rgbCurrentColor(CandyInvinc * param_1);
+void rgbCurrentColor(CandyInvinc * param_1);
 #endif
