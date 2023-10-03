@@ -38,7 +38,7 @@ void manageSparkleEffect(CandyInvinc * param_1)
         return;
     }
 
-    if (!isVisible(&param_1->modelData))
+    if (!isVisible(param_1->modelData))
     {
         param_1->sparkleEffect = disableSparkle(param_1);
     }
@@ -67,9 +67,8 @@ u32 rainbowCycle(CandyInvinc * param_1)
     return param_1->rainbowCycle &= 1;
 }
 
-u8 rgbCurrentColor(CandyInvinc * param_1)
-{
-    u8 colorArray[2];  
+void rgbCurrentColor(CandyInvinc * param_1)
+{ 
     u16 iVar2 = param_1->rainbowCycle * 12;
 
     if (param_1->rainbowCycle == 0)
@@ -77,4 +76,7 @@ u8 rgbCurrentColor(CandyInvinc * param_1)
         return 0;
     }
     
+    param_1->rgbRedValue = iVar2 + 255;
+    param_1->rgbGreenValue = iVar2 + 0;
+    param_1->rgbBlueValue = iVar2 + 0;
 }
