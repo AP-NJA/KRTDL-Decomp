@@ -1,7 +1,4 @@
-#ifndef TYPES_H_
-#define TYPES_H_
-
-#include <stdbool.h>
+#pragma once
 
 typedef signed char         s8;
 typedef signed short        s16;
@@ -15,5 +12,3 @@ typedef unsigned long long  u64;
 
 typedef float               f32;
 typedef double              f64;
-
-#endif
