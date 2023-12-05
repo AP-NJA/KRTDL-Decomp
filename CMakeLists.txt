@@ -9,7 +9,7 @@ include_directories("include")
 set (Executable
     src/Model/Model.cc
     src/State/Intangible.cc
-    src/State/Candy_Invincible.cc
+    src/State/Invincible.cc
 )
 
 add_executable(KRTDL-DECOMP
