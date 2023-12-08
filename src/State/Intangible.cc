@@ -1,6 +1,6 @@
 #include "Intangible.hh"
 
-void dataConstructor(Intangible * param_1) 
+void intangibleDataConstructor(Intangible * param_1) 
 {
     param_1->x0_intangibleFrames = 0;
     param_1->x4_flashCycle = 0;
