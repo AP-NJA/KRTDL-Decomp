@@ -5,8 +5,8 @@ void intangibleDataConstructor(Intangible * param_1)
 {
     param_1->x0_intangibleFrames = 0;
     param_1->x4_flashCycle = 0;
-    param_1->x8_wasHurt = false;
-    param_1->x9_disablePity = false;
+    param_1->x8_wasHurt = 0;
+    param_1->x9_disablePity = 0;
 }
 
 //8034F8F0
@@ -32,7 +32,7 @@ u32 canSetIntangible(Intangible * param_1)
 {
     u32 result = 0;
 
-    if ((param_1->x9_disablePity != false) || (param_1->x8_wasHurt != false) || (param_1->x0_intangibleFrames != 0))
+    if ((param_1->x9_disablePity != 0) || (param_1->x8_wasHurt != 0) || (param_1->x0_intangibleFrames != 0))
     {
         result = 1;
     }
