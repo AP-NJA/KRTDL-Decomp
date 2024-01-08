@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.0.0)
 project(KRTDL-DECOMP)
 
-
 include_directories("src")
+include_directories("asm")
 include_directories("include")
 
 
@@ -15,3 +15,4 @@ set (Executable
 add_executable(KRTDL-DECOMP
     ${Executable}
 )
+
