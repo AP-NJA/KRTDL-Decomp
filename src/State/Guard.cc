@@ -23,7 +23,7 @@ void updateGuardState(Guard * param_1)
     param_1->x5_enableGuardStateFlash = param_1->x4_enableGuardState;
 }
 
-void playerGuardingCheck(Guard * param_1, bool param_2) 
+void playerGuardingCheck(Guard * param_1, u32 param_2) 
 {
     param_1->x4_enableGuardState = param_2;
     if (param_1->x5_enableGuardStateFlash != false)
@@ -31,7 +31,7 @@ void playerGuardingCheck(Guard * param_1, bool param_2)
         return;
     }
     
-    if (param_2 != false)
+    if (param_2 != 0)
     {
         return;
     }

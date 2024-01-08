@@ -7,9 +7,9 @@ typedef struct Invincible
 {
     Model * x0_modelData;
     Intangible x4_intangibleData;
-    bool x10_enableIntangibleFlash;
-    bool x11_mightyEffect;
-    bool x12_invincibleSparkleEffect;
+    u8 x10_enableIntangibleFlash;
+    u8 x11_mightyEffect;
+    u8 x12_invincibleSparkleEffect;
     u32 x14_candyTimer;
     u32 x18_endRainbowTimer;
     u32 x1C_rainbowCycle;
