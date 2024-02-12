@@ -6,6 +6,15 @@ void resetGuardFlashCycle(Guard * param_1)
     param_1->x8_guardFlashCycle = 0;
 }
 
+// 804E4D9C
+void guardDataConstructor(Guard* param_1, Model* param_2) 
+{
+    param_1->x0_modelData = param_2;
+    param_1->x4_enableGuardState = 0;
+    param_1->x5_enableGuardFlash = 0;
+    param_1->x8_guardFlashCycle = 0;
+}
+
 // 804E4DB4
 void updateGuardState(Guard * param_1) 
 {
