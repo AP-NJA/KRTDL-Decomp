@@ -37,7 +37,7 @@ compilerFlags = [
     "-gccinc",
     "-i ./include/ -i ./src/",
     "-proc gekko",
-    "-O3,p",
+    "-O2,p",
     "-fp hardware",
 ]
 
