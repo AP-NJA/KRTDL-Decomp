@@ -15,4 +15,4 @@ typedef struct Guard
 void resetGuardFlashCycle(Guard * param_1);
 void guardDataConstructor(Guard * param_1, Model * param_2);
 void updateGuardState(Guard * param_1);
-void playerGuardingCheck(Guard * param_1, u8 param_2);
+void playerGuardingCheck(Guard * param_1, u8 guardingFlag);
