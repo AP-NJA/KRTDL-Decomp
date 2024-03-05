@@ -1,6 +1,6 @@
 #include "Intangible.hh"
 
-//8034F8D8
+// 8034F8D8
 void intangibleDataConstructor(Intangible * param_1) 
 {
     param_1->x0_intangibleFrames = 0;
@@ -9,7 +9,7 @@ void intangibleDataConstructor(Intangible * param_1)
     param_1->x9_disablePity = 0;
 }
 
-//8034F8F0
+// 8034F8F0
 void updateFlashCycle(Intangible * param_1)
 {
     u32 temp_r0;
@@ -20,14 +20,14 @@ void updateFlashCycle(Intangible * param_1)
         temp_r0 = param_1->x4_flashCycle + 1;
         param_1->x4_flashCycle = temp_r0;
         
-        if (temp_r0 == 0x14) 
+        if (temp_r0 == 20) 
         {
-            param_1->x4_flashCycle = 0x10;
+            param_1->x4_flashCycle = 16;
         }
     }
 }
 
-//8034F948
+// 8034F948
 u32 canSetIntangible(Intangible * param_1)
 {
     u32 result = 0;
@@ -40,7 +40,7 @@ u32 canSetIntangible(Intangible * param_1)
     return result;
 }
 
-//8034F97C
+// 8034F97C
 void initializeIntangibleFrames(Intangible * param_1, u32 frames)
 {
     if (param_1->x0_intangibleFrames < frames) 
@@ -51,7 +51,7 @@ void initializeIntangibleFrames(Intangible * param_1, u32 frames)
     param_1->x4_flashCycle = 0;
 }
 
-//8034FA20
+// 8034FA20
 void decrementIntangibleFrames(Intangible * param_1)
 {
     u32 temp_r4;

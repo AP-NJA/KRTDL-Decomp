@@ -1,6 +1,6 @@
 #include "Invincible.hh"
 
-//804F04DC
+// 804F04DC
 Invincible * invincibleDataConstructor(Invincible * param_1, Model * param_2)
 {
     param_1->x0_modelData = param_2;
@@ -15,6 +15,8 @@ Invincible * invincibleDataConstructor(Invincible * param_1, Model * param_2)
     return param_1;
 }
 
+
+// 804F0534
 void updateInvincibleState(Invincible * param_1)
 {
     
