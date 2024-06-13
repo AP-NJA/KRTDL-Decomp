@@ -2,7 +2,7 @@ import tools.paths as paths
 import sys
 import subprocess
 import tkinter
-from tkinter.filedialog import askopenfile, askopenfilename
+from tkinter.filedialog import askopenfilename
 
 
 def useWinePrefix() -> str:
