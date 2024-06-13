@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Model/Model.hh"
 #include "Intangible.hh"
+#include "Model/Model.hh"
 
 typedef struct Invincible
 {
@@ -20,5 +20,5 @@ typedef struct Invincible
     u8 x24_unk24;
 } Invincible;
 
-Invincible * invincibleDataConstructor(Invincible * param_1);
+Invincible * invincibleDataConstructor(Invincible * param_1, Model * param_2);
 void updateInvincibleState(Invincible * param_1);

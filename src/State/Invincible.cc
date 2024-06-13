@@ -14,10 +14,3 @@ Invincible * invincibleDataConstructor(Invincible * param_1, Model * param_2)
     param_1->x24_unk24 = 0;
     return param_1;
 }
-
-
-// 804F0534
-void updateInvincibleState(Invincible * param_1)
-{
-    
-}
