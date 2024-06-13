@@ -36,7 +36,6 @@ ninja.rule(
 ninja.newline()
 
 compilerFlags = [
-    "-c",
     "-gccinc",
     "-i ./include/ -i ./src/",
     "-proc gekko",
@@ -47,12 +46,11 @@ compilerFlags = [
 linkerFlags = []
 
 sourceFiles = [
-    # os.path.join("src", "main.cc"),
     os.path.join("src", "Model", "Model.cc"),
     os.path.join("src", "State", "Guard.cc"),
     os.path.join("src", "State", "Intangible.cc"),
     os.path.join("src", "State", "Invincible.cc"),
-    os.path.join("src", "main.cc")
+    # os.path.join("src", "main.cc")
 ]
 
 targetSourceOutFiles = []
