@@ -4,12 +4,12 @@
 
 typedef struct HP
 {
-    u32 x0_currentHP;
-    u32 x4_maxHP;
-    u32 x8_minHP;
-    u32 xC_unkC;
-    u32 x10_previousHP;
-    u32 x14_unk14;
+    volatile u32 currentHP;
+    u32 maximumHP;
+    u32 minimumHP;
+    u32 unkC;
+    u32 previousHP;
+    u32 unk14;
 } HP;
 
 void HPManager(HP * param_1, u32 damageTaken);
