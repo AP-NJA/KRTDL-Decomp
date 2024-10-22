@@ -22,7 +22,6 @@ subprocess.run(
 print("Compiling source files...")
 
 for index, sourceFile in enumerate(sourceFiles):
-    # baseName = os.path.basename(sourceFile)
     paths = os.path.dirname(sourceFile)
     pre, ext = os.path.splitext(sourceFile)
 
@@ -47,3 +46,5 @@ print(f"{objectFileString}")
 subprocess.run(
     f"{project.useWinePrefix()} {config.Build.linker} objects/{objectFileString} {config.Build.linkerFlagString} -o linkerFlagString.elf", shell=True
 )
+
+# This looks really bad upon closer inspection but whatever LOL
