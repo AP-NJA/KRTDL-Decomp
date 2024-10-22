@@ -5,19 +5,19 @@
 
 typedef struct Invincible
 {
-    Hero * x0_modelData;
-    Intangible x4_intangibleData;
-    u8 x10_enableIntangibleFlash;
-    u8 x11_mightyEffect;
-    u8 x12_invincibleSparkleEffect;
-    u32 x14_candyTimer;
-    u32 x18_endRainbowTimer;
-    u32 x1C_rainbowCycle;
-    u8 x20_rgbRedValue;
-    u8 x21_rgbGreenValue;
-    u8 x22_rgbBlueValue;
-    u8 x23_unk23;
-    u8 x24_unk24;
+    Hero * heroData;
+    Intangible intangibleData;
+    u8 enableIntangibleFlash;
+    u8 mightyEffect;
+    u8 invincibleSparkleEffect;
+    u32 candyTimer;
+    u32 endRainbowTimer;
+    u32 rainbowCycle;
+    u8 rgbRedValue;
+    u8 rgbGreenValue;
+    u8 rgbBlueValue;
+    u8 unk23;
+    u8 unk24;
 } Invincible;
 
 Invincible * invincibleDataConstructor(Invincible * param_1, Hero * param_2);

@@ -4,10 +4,10 @@
 
 typedef struct Intangible
 {
-    u32 x0_intangibleFrames;
-    u32 x4_flashCycle;
-    u8 x8_wasHurt;
-    u8 x9_disablePity;
+    u32 intangibleFrames;
+    u32 flashCycle;
+    u8 wasHurt;
+    u8 disablePity;
 } Intangible;
 
 void intangibleDataConstructor(Intangible * param_1);
