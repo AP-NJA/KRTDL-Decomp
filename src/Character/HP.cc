@@ -1,7 +1,7 @@
 #include "HP.hh"
 
 // 8034F59C
-void HPManager(HP * param_1, u32 damageTaken)
+void decreaseHP(HP * param_1, u32 damageTaken)
 {
     s32 newHP;
     u32 temp_r5;
@@ -32,7 +32,7 @@ void HPManager(HP * param_1, u32 damageTaken)
     return;
 }
 
-/* void lbl_8034F6A0(HP * param_1, u32 param_2)
+void lbl_8034F6A0(HP * param_1, u32 param_2)
 {
     u32 temp_r0;
 
@@ -43,4 +43,4 @@ void HPManager(HP * param_1, u32 damageTaken)
         return;
     }
     param_1->unkC = temp_r0 - param_2;
-} */
+}
