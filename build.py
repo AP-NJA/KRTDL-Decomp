@@ -1,106 +1,49 @@
-import io
 import os
-import sys
-from tools.ninja_syntax import Writer
-
-outBuffer = io.StringIO()
-ninja = Writer(outBuffer)
-
-fileExtension = ""
-
-if (sys.platform == "darwin" or sys.platform == "linux2"):
-    winePrefix = "wine"
-
-ninja.variable("builddir", "objects")
-ninja.variable("outdir", "build")
-ninja.newline()
-
-compilerPath = os.path.join("tools", "Compiler", "mwcceppc.exe")
-
-ninja.variable("compiler", f"{compilerPath}")
-# ninja.variable("compiler", "g++")
-ninja.newline()
-
-ninja.rule(
-    "cc",
-    command=f"{winePrefix} $compiler $ccflags -c $in -o $out",
-    description="CC $out"
-)
-ninja.newline()
-
-ninja.rule(
-    "ld",
-    command=f"{winePrefix} $compiler $ldflags $in -o $out",
-    description="LD $out",
-)
-ninja.newline()
-
-compilerFlags = [
-    "-gccinc",
-    "-i ./include/ -i ./src/",
-    "-proc gekko",
-    "-O2,p",
-    "-fp hardware",
-]
-
-linkerFlags = []
+import subprocess
+import tools.project as project
+import tools.config as config
 
 sourceFiles = [
-    os.path.join("src", "Model", "Model.cc"),
-    os.path.join("src", "State", "Guard.cc"),
-    os.path.join("src", "State", "Intangible.cc"),
-    os.path.join("src", "State", "Invincible.cc"),
-    # os.path.join("src", "main.cc")
+    os.path.join("src", "Character", "HP.cc"),
+    os.path.join("src", "Hero", "Hero.cc"),
+    os.path.join("src", "Hero", "State", "Guard.cc"),
+    os.path.join("src", "Hero", "State", "Intangible.cc"),
+    os.path.join("src", "Hero", "State", "Invincible.cc")
 ]
+sourceFileString = " ".join([*sourceFiles])
 
-targetSourceOutFiles = []
+objectFiles = []
 
-for inFile in sourceFiles:
-    _, ext = os.path.splitext(inFile)
+print("Creating objects folder...")
+subprocess.run(
+    "mkdir -p objects", shell=True
+)
 
-    targetOutFile = os.path.join("$builddir", inFile + ".o")
-    targetSourceOutFiles.append(targetOutFile)
+print("Compiling source files...")
 
-    ninja.build(
-        targetOutFile,
-        ext[1:],
-        inFile,
-        variables={
-            "ccflags": " ".join([*compilerFlags])
-        }
+for index, sourceFile in enumerate(sourceFiles):
+    # baseName = os.path.basename(sourceFile)
+    paths = os.path.dirname(sourceFile)
+    pre, ext = os.path.splitext(sourceFile)
 
+    objectFiles.append(f"{pre}.o")
+
+    print(f"{index + 1}/{len(sourceFiles)}: {sourceFile}")
+    subprocess.run(
+        f"{project.useWinePrefix()} {config.Build.compiler} {sourceFile} {config.Build.compilerFlagString}", shell=True
     )
-    ninja.newline()
 
-ninja.build(
-    os.path.join('$outdir', f'KRTDL-Decomp{fileExtension}'),
-    "ld",
-    targetSourceOutFiles,
-    variables={
-        "ldflags": " ".join([*linkerFlags])
-    },
+    subprocess.run(
+        f"mkdir -p objects/{paths}", shell=True
+    )
+    subprocess.run(
+        f"mv {os.path.basename(objectFiles[index])} objects/{objectFiles[index]}", shell=True
+    )
+
+objectFileString = " objects/".join([*objectFiles])
+
+print(f"{objectFileString}")
+
+subprocess.run(
+    f"{project.useWinePrefix()} {config.Build.linker} objects/{objectFileString} {config.Build.linkerFlagString} -o linkerFlagString.elf", shell=True
 )
-
-ninja.variable("configure", "build.py")
-ninja.newline()
-
-ninja.rule(
-    "configure",
-    command=f'{sys.executable} $configure',
-    generator=True,
-)
-ninja.newline()
-
-ninja.build(
-    'build.ninja',
-    'configure',
-    implicit=[
-        '$configure',
-        os.path.join('tools', 'ninja_syntax.py'),
-    ],
-)
-
-with open('build.ninja', 'w') as outFile:
-    outFile.write(outBuffer.getvalue())
-
-ninja.close()

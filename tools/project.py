@@ -1,4 +1,5 @@
-import tools.paths as paths
+import tools.config as config
+import os
 import sys
 import subprocess
 import tkinter
@@ -12,15 +13,18 @@ def useWinePrefix() -> str:
 
 
 def createContext():
-    subprocess.run(f"find {paths.PathFiles.includePath} {
-        paths.PathFiles.sourceFilePath} -type f -name '*.hh' | sed -e 's/.*/#include \"&\"/' > ctx_includes.c", shell=True)
     subprocess.run(
-        f"python3 {paths.PathFiles.m2ctxPath}/m2ctx.py ctx_includes.c", shell=True)
+        f"find {config.Paths.sourceFilePath} -type f -name '*.hh' | sed -e 's/.*/#include \"&\"/' > ctx_includes.c", shell=True
+    )
+    subprocess.run(
+        f"python3.12 {config.Paths.m2ctxPath}/m2ctx.py ctx_includes.c", shell=True
+    )
 
 
 def runDiffer():
     subprocess.run(
-        f"python3 {paths.PathFiles.asmDifferPath}/diff.py -wy 0x0", shell=True)
+        f"python3.12 {config.Paths.asmDifferPath}/diff.py 0x34", shell=True
+    )
 
 
 class Decompile:
@@ -33,11 +37,14 @@ class Decompile:
         self.baseFile = askopenfilename(initialdir="src")
 
     def createObjectFiles(self):
-        subprocess.run(f"{useWinePrefix()} {paths.BuildConfig.compiler} {
-                       self.baseFile} {paths.BuildConfig.compilerFlagString} -o source.o", shell=True)
         subprocess.run(
-            f"powerpc-eabi-gcc {self.targetFile} -c -o target.o", shell=True)
+            f"{useWinePrefix()} {config.Build.compiler} {self.baseFile} {config.Build.compilerFlagString} -o source.o", shell=True
+        )
+        subprocess.run(
+            f"powerpc-eabi-gcc {self.targetFile} -c -o target.o", shell=True
+        )
 
     def runDecompiler(self):
-        subprocess.run(f"python3 {paths.PathFiles.m2cPath}/m2c.py --target ppc-mwcc-c --context {
-                       paths.PathFiles.contextFile} --allman --no-unk-inference {self.targetFile} >> {self.baseFile}", shell=True)
+        subprocess.run(
+            f"python3.12 {config.Paths.m2cPath}/m2c.py --target ppc-mwcc-c --context {config.Paths.contextFile} --allman --no-unk-inference {self.targetFile} >> {self.baseFile}", shell=True
+        )
