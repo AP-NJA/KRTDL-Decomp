@@ -57,3 +57,9 @@ void decreaseCorpseHP(HP * param_1, u32 damageTaken)
     }
     param_1->corpseHP = temp_r0 - damageTaken;
 }
+
+// 8034F704
+f32 HPFloat(HP * param_1)
+{
+    return (f32)param_1->currentHP / (f32)param_1->limits.maximum;
+}

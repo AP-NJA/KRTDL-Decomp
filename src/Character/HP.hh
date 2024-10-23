@@ -11,6 +11,9 @@ typedef struct HP
     u32 unk14;
 } HP;
 
+extern f64 lbl_808C9AB0;
+
 void decreaseHP(HP * param_1, u32 damageTaken);
 void gainHP(HP * param_1, u32 healAmount);
 void decreaseCorpseHP(HP * param_1, u32 damageTaken);
+f32 HPFloat(HP * param_1);
