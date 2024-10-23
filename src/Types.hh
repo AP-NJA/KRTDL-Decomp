@@ -25,3 +25,11 @@ typedef double f64;
 
 typedef volatile f32 vf32;
 typedef volatile f64 vf64;
+
+typedef struct MaxMinU32
+{
+    u32 maximum;
+    u32 minimum;
+} MaxMinU32;
+
+u32 * lbl_8014C34C(MaxMinU32 * param_1, u32 * param_2);
