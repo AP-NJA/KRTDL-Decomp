@@ -1,0 +1,50 @@
+#ifndef _STD_TREE
+#define _STD_TREE
+
+#include <MSL_C++/memory>
+
+namespace std {
+    struct tree____ {
+        ~tree____();
+    };
+
+    struct tree___ : tree____ {
+        // ~tree___();
+    };
+    struct tree__ : tree___ {
+        // ~tree__();
+    };
+
+    struct tree_ : tree__ {
+        // ~tree_();
+    };
+
+    template <typename T>
+    class tree : tree_ {
+    private:
+        struct node_base {
+            node_base* mLeft;
+            node_base* mRight;
+            // node_base* m_Owner;
+            // T mData;
+        };
+    public:
+        inline tree() {
+            mCount = 0;
+            mNode.mLeft = nullptr;
+            mNode.mRight = &mNode;
+        }
+        ~tree() { }
+
+        void clear();
+        void destroy();
+    private:
+        void insert_node_at(/* args unk */);
+    private:
+        size_t mCount;
+        node_base mNode;
+    };
+
+}
+
+#endif

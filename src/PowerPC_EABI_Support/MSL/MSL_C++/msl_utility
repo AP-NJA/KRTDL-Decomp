@@ -1,0 +1,18 @@
+#ifndef _MSL_UTILITY_H
+#define _MSL_UTILITY_H
+
+#include "MSL_C++/Metrowerks/type_traits.h"
+#include <cstdio>
+#include <cstdlib>
+
+namespace std {
+    inline void __msl_error(const char* pMsg) {
+        fprintf(stderr, pMsg);
+        abort();
+    }
+}
+
+// probably
+#define MSL_ERROR(msg) std::__msl_error(msg)
+
+#endif

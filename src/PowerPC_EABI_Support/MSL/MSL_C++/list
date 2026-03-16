@@ -1,0 +1,262 @@
+#ifndef _STD_LIST_
+#define _STD_LIST_
+
+// documented from the Food Network - Cook or Be Cooked! debug build
+// (CulinaryAcademy_debug.elf)
+
+#include <MSL_C++/algorithm>
+#include <MSL_C++/cstddef>
+#include <MSL_C++/memory>
+#include <MSL_C++/stdexcept>
+#include <MSL_C++/Metrowerks/compressed_pair.h>
+#include <MSL_C++/Metrowerks/int2type.h>
+#include <MSL_C++/Metrowerks/alloc_ptr.h>
+
+namespace std {
+
+template <typename T, typename Allocator>
+class __list_deleter {
+public:
+    struct node;
+    struct node_base;
+
+    typedef T* pointer;
+    typedef const T* const_pointer;
+    typedef T& reference;
+    typedef const T& const_reference;
+    typedef node_base* node_base_pointer;
+    typedef const node_base* const_node_base_pointer;
+    typedef node* node_pointer;
+    typedef const node* const_node_pointer;
+    typedef allocator<node> node_allocator_type;
+
+    struct node_base {
+        node_pointer prev_;
+        node_pointer next_;
+    };
+
+    struct node : node_base {
+        T data_;
+    };
+
+    template <bool B = false>
+    class generic_iterator {
+    public:
+        generic_iterator() { }
+        generic_iterator(node_pointer n)
+            : node_(n)
+        { }
+
+        generic_iterator(node_base_pointer n)
+            : node_((node_pointer)n)
+        { }
+
+        reference operator*() {
+            return node_->data_;
+        }
+
+        const_reference operator*() const {
+            return node_->data_;
+        }
+
+        pointer operator->() {
+            return &node_->data_;
+        }
+
+        const_pointer operator->() const {
+            return &node_->data_;
+        }
+
+        generic_iterator operator++(int) {
+            generic_iterator temp = *this;
+            node_ = node_->next_;
+            return temp;
+        }
+
+        generic_iterator operator--(int) {
+            generic_iterator temp = *this;
+            node_ = node_->prev_;
+            return temp;
+        }
+
+        generic_iterator& operator++() {
+            node_ = node_->next_;
+            return *this;
+        }
+
+        generic_iterator& operator--() {
+            node_ = node_->prev_;
+            return *this;
+        }
+
+        friend bool operator==(const generic_iterator& x, const generic_iterator& y) {
+            return x.node_ == y.node_;
+        }
+
+        friend bool operator!=(const generic_iterator& x, const generic_iterator& y) {
+            return x.node_ != y.node_;
+        }
+    private:
+        friend class __list_deleter;
+
+        node* node_;
+    };
+
+    #ifndef DONT_INLINE_STL
+    inline __list_deleter();
+    #else
+    __list_deleter() DONT_INLINE_CLASS;
+    #endif
+
+    typedef generic_iterator<false> iterator; // probably
+    // then what is const_iterator?
+
+    #ifndef DONT_INLINE_STL
+    ~__list_deleter() {
+        iterator i;
+        erase(i, this, begin(), end());
+    }
+    #else
+    ~__list_deleter() DONT_INLINE_CLASS;
+    #endif
+
+    iterator end() {
+        return iterator(&end_.second());
+    }
+
+    iterator begin() {
+        return iterator(tail().next_);
+    }
+
+    Allocator& alloc() {
+        return size_.first();
+    }
+
+    const Allocator& alloc() const {
+        return size_.first();
+    }
+
+    node_allocator_type& node_alloc() {
+        return end_.first();
+    }
+
+    const node_allocator_type& node_alloc() const {
+        return end_.first();
+    }
+
+    node_base& tail() {
+        return end_.second();
+    }
+
+    const node_base& tail() const {
+        return end_.second();
+    }
+
+    size_t& sz() {
+        return size_.second();
+    }
+
+    const size_t& sz() const {
+        return size_.second();
+    }
+
+    size_t size() const {
+        return size_.second();
+    }
+
+    void clear() {
+        iterator i;
+        erase(i, this, begin(), end());
+    }
+
+    void pop_back() {
+        erase(end());
+    }
+
+    void pop_front() {
+        erase(begin());
+    }
+
+    static node_pointer __iterator2pointer(iterator it) {
+        return it.node_;
+    }
+
+    static iterator __pointer2iterator(node_pointer p) {
+        return iterator(p);
+    }
+
+    void insert_nodes(node_base_pointer here, node_base_pointer first, node_base_pointer last) {
+        here->prev_->next_ = (node_pointer)first;
+        first->prev_ = here->prev_;
+        here->prev_ = (node_pointer)last;
+        last->next_ = (node_pointer)here;
+    }
+
+    void erase(iterator pos) {
+        iterator dst;
+        erase(dst, this, pos);
+    }
+
+    // the erase function from Food Network - Cook or Be Cooked! has this signature
+    // iterator erase(iterator first, iterator last);
+    // perhaps it changed after?
+
+    static iterator erase(iterator& dst, __list_deleter* list, iterator first, iterator last);
+    static iterator erase(iterator& dst, __list_deleter* list, iterator position);
+    static void insert(iterator& dst, __list_deleter* list, iterator position, const_reference x) DONT_INLINE_CLASS {
+        Metrowerks::alloc_ptr<node, node_allocator_type&> ap (list->node_alloc().allocate(1), list->node_alloc());
+
+        list->alloc().construct(&ap->data_, x);
+
+        node_pointer newnode = ap.release();
+
+        list->insert_nodes(__iterator2pointer(position), newnode, newnode);
+        list->sz()++;
+        dst = __pointer2iterator(newnode);
+    }
+protected:
+    Metrowerks::compressed_pair<Allocator, size_t> size_;
+    Metrowerks::compressed_pair<node_allocator_type, node_base> end_;
+};
+
+template <typename T, typename Allocator>
+__list_deleter<T, Allocator>::__list_deleter()
+    : size_(0)
+    , end_(alloc())
+{
+    node_base& t = tail();
+    t.next_ = (node_pointer)&t;
+    t.prev_ = (node_pointer)&t;
+}
+
+#ifdef DONT_INLINE_STL
+template <typename T, typename Allocator>
+__list_deleter<T, Allocator>::~__list_deleter() {
+    iterator i;
+    erase(i, this, begin(), end());
+}
+#endif
+
+template <typename T, typename Allocator>
+class __list_imp : public __list_deleter<T, Allocator> {
+    typedef __list_deleter<T, Allocator> Base;
+    typedef Base::const_reference const_reference;
+public:
+    ~__list_imp() { }
+
+    void push_back(const_reference x) {
+        iterator i;
+        insert(i, this, end(), x);
+    }
+};
+
+template <typename T, typename Allocator = allocator<T> >
+class list : public __list_imp<T, Allocator> {
+public:
+    ~list() { }
+};
+
+
+}
+
+#endif
