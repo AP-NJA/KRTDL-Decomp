@@ -2,7 +2,7 @@ import os
 
 
 class Paths:
-    sourceFilePath = os.path.join("src")
+    includeFilePath = os.path.join("include")
     asmFilePath = os.path.join("asm")
     toolsPath = os.path.join("tools")
 
@@ -16,23 +16,29 @@ class Paths:
 
 class Build:
     assemblyFlags = [
-        "-c",
-        f"-I {Paths.asmFilePath}"
+        f"-I {Paths.asmFilePath}",
+        "-mgekko",
+        "-c"
     ]
     assemblyFlagString = " ".join([*assemblyFlags])
 
     compilerFlags = [
-        "-c",
         "-gccinc",
-        f"-i {Paths.sourceFilePath}",
+        f"-i {Paths.includeFilePath}",
         "-proc gekko",
-        "-O3,p",
-        "-fp hardware",
+        "-O3,s",
+        "-fp hard",
+        "-Cpp_exceptions off",
+        "-lang=c++",
+        "-c"
     ]
     compilerFlagString = " ".join([*compilerFlags])
 
-    linkerFlags = []
+    linkerFlags = [
+        "-lcf ldscript.lcf"
+    ]
     linkerFlagString = " ".join([*linkerFlags])
 
+    assembler = os.path.join(f"{Paths.compilerPath}", "mwasmeppc.exe")
     compiler = os.path.join(f"{Paths.compilerPath}", "mwcceppc.exe")
     linker = os.path.join(f"{Paths.compilerPath}", "mwldeppc.exe")
